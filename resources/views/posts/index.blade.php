@@ -7,7 +7,7 @@
         @foreach($posts as $post)
             <div class='card p-3 mt-3 mb-3'>
                 <h3><a href='/posts/{{$post->id}}'>{{$post->title}}</a></h3> {{-- href="{{url('posts/'.$post->id)}}" --}} 
-                <small>Written on {{$post->created_at}}</small>
+                <small>Written on {{$post->created_at}} by <strong>{{$post->user->name}}</strong></small>
             </div>
         @endforeach
         {{$posts->links()}}

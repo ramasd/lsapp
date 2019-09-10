@@ -15,5 +15,7 @@ class Post extends Model
     // Timestamp [Be defaultu timestamp reikšmė yra true, bet jei norim kad nenaudotų timestampų, tai galim nustatyti reikšmę į false]
     public $timestamp = true;
 
-    
+    public function user(){
+        return $this->belongsTo('App\User');
+    }   
 }
