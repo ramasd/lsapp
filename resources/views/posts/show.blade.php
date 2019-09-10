@@ -8,9 +8,14 @@
     </div>
     <hr>
     <small>Written on {{$post->created_at}} by <strong>{{$post->user->name}}</strong></small><br>
-    <a href="/posts/{{$post->id}}/edit" class="btn btn-primary">Edit</a>
+    <hr>
+    @auth
+        @if(Auth::user()->id == $post->user_id)
+            <a href="/posts/{{$post->id}}/edit" class="btn btn-primary">Edit</a>
 
-    {!! Form::open(['action' => ['PostsController@destroy', $post->id], 'method' => 'DELETE', 'onsubmit' => 'return confirm("Are You Sure?")', 'style' => 'display:inline']) !!}
-        {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
-    {!! Form::close() !!}
+            {!! Form::open(['action' => ['PostsController@destroy', $post->id], 'method' => 'DELETE', 'onsubmit' => 'return confirm("Are You Sure?")', 'style' => 'display:inline']) !!}
+                {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+            {!! Form::close() !!}
+        @endif
+    @endauth
 @endsection
